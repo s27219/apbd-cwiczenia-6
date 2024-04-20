@@ -7,7 +7,8 @@ public interface IAnimalsService
 {
     IEnumerable<Animal> GetAnimals(string orderBy);
     int AddAnimal(AddAnimal addAnimal);
-    Animal? GetAnimal(int idAnimal);
-    int UpdateAnimal(Animal animal);
-    int DeleteAnimal(int idAnimal);
+    
+    int UpdateAnimal(int id, UpdateAnimal updateAnimal);
+    
+    int DeleteAnimal(int id);
 }

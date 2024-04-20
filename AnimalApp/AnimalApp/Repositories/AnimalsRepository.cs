@@ -63,19 +63,36 @@ public class AnimalsRepository : IAnimalsRepository
         var affectedCount = command.ExecuteNonQuery();
         return affectedCount;
     }
-
-    public Animal GetAnimal(int idStudent)
+    
+    public int UpdateAnimal(int id, UpdateAnimal updateAnimal)
     {
-        throw new NotImplementedException();
+        using SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("Default"));
+        connection.Open();
+
+        using SqlCommand command = new SqlCommand();
+        command.Connection = connection;
+        command.CommandText = "UPDATE Animal SET Name=@animalName, Description=@animalDescription, Category=@animalCategory, Area=@animalArea WHERE IdAnimal = @animalId";
+        command.Parameters.AddWithValue("@animalName", updateAnimal.Name);
+        command.Parameters.AddWithValue("@animalDescription", updateAnimal.Description);
+        command.Parameters.AddWithValue("@animalCategory", updateAnimal.Category);
+        command.Parameters.AddWithValue("@animalArea", updateAnimal.Area);
+        command.Parameters.AddWithValue("@animalId", id);
+        
+        var affectedCount = command.ExecuteNonQuery();
+        return affectedCount;
     }
-
-    public int UpdateAnimal(Animal student)
+    
+    public int DeleteAnimal(int id)
     {
-        throw new NotImplementedException();
-    }
+        using SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("Default"));
+        connection.Open();
 
-    public int DeleteAnimal(int idStudent)
-    {
-        throw new NotImplementedException();
+        using SqlCommand command = new SqlCommand();
+        command.Connection = connection;
+        command.CommandText = "DELETE FROM Animal WHERE IdAnimal = @animalId";
+        command.Parameters.AddWithValue("@animalId", id);
+        
+        var affectedCount = command.ExecuteNonQuery();
+        return affectedCount;
     }
 }

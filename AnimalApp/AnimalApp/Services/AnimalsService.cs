@@ -23,19 +23,14 @@ public class AnimalsService : IAnimalsService
     {
         return _animalsRepository.AddAnimal(addAnimal);
     }
-
-    public Animal? GetAnimal(int idStudent)
+    
+    public int UpdateAnimal(int id, UpdateAnimal updateAnimal)
     {
-        throw new NotImplementedException();
+        return _animalsRepository.UpdateAnimal(id, updateAnimal);
     }
-
-    public int UpdateAnimal(Animal student)
+    
+    public int DeleteAnimal(int id)
     {
-        throw new NotImplementedException();
-    }
-
-    public int DeleteAnimal(int idStudent)
-    {
-        throw new NotImplementedException();
+        return _animalsRepository.DeleteAnimal(id);
     }
 }

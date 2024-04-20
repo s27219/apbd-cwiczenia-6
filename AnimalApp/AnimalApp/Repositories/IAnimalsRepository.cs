@@ -7,7 +7,6 @@ public interface IAnimalsRepository
 {
     IEnumerable<Animal> GetAnimals();
     int AddAnimal(AddAnimal addAnimal);
-    Animal GetAnimal(int idStudent);
-    int UpdateAnimal(Animal student);
-    int DeleteAnimal(int idStudent);
+    int UpdateAnimal(int id, UpdateAnimal updateAnimal);
+    int DeleteAnimal(int id);
 }

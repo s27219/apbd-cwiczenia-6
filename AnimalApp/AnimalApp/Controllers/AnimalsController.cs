@@ -1,9 +1,7 @@
-using System.Data;
 using AnimalApp.Models;
 using AnimalApp.Models.DTOs;
 using AnimalApp.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 
 namespace AnimalApp.Controllers;
 
@@ -34,8 +32,22 @@ public class AnimalsController : ControllerBase
     {
         _animalsService.AddAnimal(addAnimal);
         
-        //return Created("", null);
         return StatusCode(StatusCodes.Status201Created);
     }
-    
+
+    [HttpPut("{id:int}")]
+    public IActionResult UpdateAnimal(int id,[FromBody] UpdateAnimal updateAnimal)
+    {
+        _animalsService.UpdateAnimal(id, updateAnimal);
+        
+        return NoContent();
+    }
+
+    [HttpDelete("{id:int}")]
+    public IActionResult DeleteAnimal(int id)
+    {
+        _animalsService.DeleteAnimal(id);
+        
+        return NoContent();
+    }
 }
